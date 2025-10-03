@@ -1,0 +1,33 @@
+syntax = "proto2";
+
+// python -m grpc_tools.protoc weather.proto --proto_path=. --python_out=. --grpc_python_out=. 
+
+service WeatherHistory {
+  rpc GetSummary (Location) returns (SummaryReturn) {}
+}
+
+message Location {
+  required double lat = 1;
+  required double lon = 2;
+}
+
+message DateRange {
+  required string start_date = 1; // YYYY-MM-DD
+  required string end_date = 2;   // YYYY-MM-DD
+}
+
+message PrecipitationEvent {
+  required string date = 1;
+  required float precipitation_mm = 2;
+}
+
+message SummaryReturn {
+    required string temperature_c = 1;
+}
+
+// Add messages here
+/*
+required float temperature_c = 1;
+    required float wind_kmh = 2;
+    required float precipitation_mm = 3;
+*/
