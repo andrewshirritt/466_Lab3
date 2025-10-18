@@ -9,9 +9,12 @@ import weather_pb2_grpc
 class WeatherHistoryServicer(weather_pb2_grpc.WeatherHistoryServicer):
 
     def GetSummary(self, request, context):
-        return weather_pb2.SummaryReturn(temperature_c="test msg")
+        temp, wind, precip = utils.fetch_summary_data(request.location, request.daterange)
+        return weather_pb2.SummaryReturn(temperature_c=temp, wind=wind, precip=precip)
 
-
+    def PrecipAnalysis(self, request, context):
+        events = utils.fetch_analysis_data(request.location, request.daterange)
+        return weather_pb2.AnalysisReturn(events=events)
 
 def serve():
     port = "50051"

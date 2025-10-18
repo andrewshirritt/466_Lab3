@@ -38,8 +38,13 @@ class WeatherHistoryStub(object):
         """
         self.GetSummary = channel.unary_unary(
                 '/WeatherHistory/GetSummary',
-                request_serializer=weather__pb2.Location.SerializeToString,
+                request_serializer=weather__pb2.Summary.SerializeToString,
                 response_deserializer=weather__pb2.SummaryReturn.FromString,
+                _registered_method=True)
+        self.PrecipAnalysis = channel.unary_unary(
+                '/WeatherHistory/PrecipAnalysis',
+                request_serializer=weather__pb2.Summary.SerializeToString,
+                response_deserializer=weather__pb2.AnalysisReturn.FromString,
                 _registered_method=True)
 
 
@@ -54,13 +59,24 @@ class WeatherHistoryServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def PrecipAnalysis(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_WeatherHistoryServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetSummary': grpc.unary_unary_rpc_method_handler(
                     servicer.GetSummary,
-                    request_deserializer=weather__pb2.Location.FromString,
+                    request_deserializer=weather__pb2.Summary.FromString,
                     response_serializer=weather__pb2.SummaryReturn.SerializeToString,
+            ),
+            'PrecipAnalysis': grpc.unary_unary_rpc_method_handler(
+                    servicer.PrecipAnalysis,
+                    request_deserializer=weather__pb2.Summary.FromString,
+                    response_serializer=weather__pb2.AnalysisReturn.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -90,8 +106,35 @@ class WeatherHistory(object):
             request,
             target,
             '/WeatherHistory/GetSummary',
-            weather__pb2.Location.SerializeToString,
+            weather__pb2.Summary.SerializeToString,
             weather__pb2.SummaryReturn.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def PrecipAnalysis(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/WeatherHistory/PrecipAnalysis',
+            weather__pb2.Summary.SerializeToString,
+            weather__pb2.AnalysisReturn.FromString,
             options,
             channel_credentials,
             insecure,

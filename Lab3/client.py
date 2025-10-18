@@ -17,23 +17,41 @@ def run():
         summer_break = weather_pb2.DateRange(start_date='2025-04-27', end_date='2025-09-02')
 
         # === REQUEST 1: GetSummary for Bridgetown, Barbados ===
-        reply = stub.GetSummary(locations['BGI'])
+        request = weather_pb2.Summary(location=locations['BGI'], daterange=reading_week)
+        reply = stub.GetSummary(request)
         print(reply)
+
         # Use reading_week period
 
         # === REQUEST 2: GetSummary for Punta Cana, Dominican Republic ===
+        request = weather_pb2.Summary(location=locations['PUJ'], daterange=reading_week)
+        reply = stub.GetSummary(request)
+        print(reply)
+
         # Use reading_week period
 
         # === REQUEST 3: StartPrecipitationAnalysis for Kingston, ON ===
+        request = weather_pb2.Summary(location=locations['YGK'], daterange=summer_break)
+        reply = stub.PrecipAnalysis(request)
+        print(reply)
         # Use summer_break period
 
         # === REQUEST 4: GetPrecipitation for Kingston, ON ===
+        request = weather_pb2.Summary(location=locations['YGK'], daterange=reading_week)
+        reply = stub.GetSummary(request)
+        print(reply)
         # Use less than 5 mm
 
         # === REQUEST 5: GetPrecipitation for Kingston, ON ===
+        request = weather_pb2.Summary(location=locations['PUJ'], daterange=reading_week)
+        reply = stub.GetSummary(request)
+        print(reply)
         # Use equals 4.1 mm
 
         # === REQUEST 6: GetPrecipitation for Kingston, ON ===
+        request = weather_pb2.Summary(location=locations['PUJ'], daterange=reading_week)
+        reply = stub.GetSummary(request)
+        print(reply)
         # Use greater than 10 mm
 
 
