@@ -24,25 +24,31 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rweather.proto\"E\n\x07Summary\x12\x1b\n\x08location\x18\x01 \x02(\x0b\x32\t.Location\x12\x1d\n\tdaterange\x18\x02 \x02(\x0b\x32\n.DateRange\"D\n\rSummaryReturn\x12\x15\n\rtemperature_c\x18\x01 \x02(\x02\x12\x0c\n\x04wind\x18\x02 \x02(\x02\x12\x0e\n\x06precip\x18\x03 \x02(\x02\"5\n\x0e\x41nalysisReturn\x12#\n\x06\x65vents\x18\x01 \x03(\x0b\x32\x13.PrecipitationEvent\"$\n\x08Location\x12\x0b\n\x03lat\x18\x01 \x02(\x01\x12\x0b\n\x03lon\x18\x02 \x02(\x01\"1\n\tDateRange\x12\x12\n\nstart_date\x18\x01 \x02(\t\x12\x10\n\x08\x65nd_date\x18\x02 \x02(\t\"<\n\x12PrecipitationEvent\x12\x0c\n\x04\x64\x61te\x18\x01 \x02(\t\x12\x18\n\x10precipitation_mm\x18\x02 \x02(\x02\x32i\n\x0eWeatherHistory\x12(\n\nGetSummary\x12\x08.Summary\x1a\x0e.SummaryReturn\"\x00\x12-\n\x0ePrecipAnalysis\x12\x08.Summary\x1a\x0f.AnalysisReturn\"\x00')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rweather.proto\"<\n\x06Precip\x12\x10\n\x08loc_name\x18\x01 \x02(\t\x12\x0e\n\x06precip\x18\x02 \x02(\x02\x12\x10\n\x08operator\x18\x03 \x02(\t\"_\n\x0f\x41nalysisSummary\x12\x1b\n\x08location\x18\x01 \x02(\x0b\x32\t.Location\x12\x1d\n\tdaterange\x18\x02 \x02(\x0b\x32\n.DateRange\x12\x10\n\x08loc_name\x18\x03 \x02(\t\"E\n\x07Summary\x12\x1b\n\x08location\x18\x01 \x02(\x0b\x32\t.Location\x12\x1d\n\tdaterange\x18\x02 \x02(\x0b\x32\n.DateRange\"D\n\rSummaryReturn\x12\x15\n\rtemperature_c\x18\x01 \x02(\x02\x12\x0c\n\x04wind\x18\x02 \x02(\x02\x12\x0e\n\x06precip\x18\x03 \x02(\x02\"5\n\x0e\x41nalysisReturn\x12#\n\x06\x65vents\x18\x01 \x03(\x0b\x32\x13.PrecipitationEvent\"|\n\x0fGetPrecipReturn\x12(\n\x0breturn_list\x18\x01 \x03(\x0b\x32\x13.PrecipitationEvent\x12\x12\n\nmatch_days\x18\x02 \x02(\x05\x12\x12\n\nmax_precip\x18\x03 \x02(\x02\x12\x17\n\x0fmax_precip_date\x18\x04 \x02(\t\"$\n\x08Location\x12\x0b\n\x03lat\x18\x01 \x02(\x01\x12\x0b\n\x03lon\x18\x02 \x02(\x01\"1\n\tDateRange\x12\x12\n\nstart_date\x18\x01 \x02(\t\x12\x10\n\x08\x65nd_date\x18\x02 \x02(\t\"<\n\x12PrecipitationEvent\x12\x0c\n\x04\x64\x61te\x18\x01 \x02(\t\x12\x18\n\x10precipitation_mm\x18\x02 \x02(\x02\x32\x9b\x01\n\x0eWeatherHistory\x12(\n\nGetSummary\x12\x08.Summary\x1a\x0e.SummaryReturn\"\x00\x12\x35\n\x0ePrecipAnalysis\x12\x10.AnalysisSummary\x1a\x0f.AnalysisReturn\"\x00\x12(\n\tGetPrecip\x12\x07.Precip\x1a\x10.GetPrecipReturn\"\x00')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'weather_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_SUMMARY']._serialized_start=17
-  _globals['_SUMMARY']._serialized_end=86
-  _globals['_SUMMARYRETURN']._serialized_start=88
-  _globals['_SUMMARYRETURN']._serialized_end=156
-  _globals['_ANALYSISRETURN']._serialized_start=158
-  _globals['_ANALYSISRETURN']._serialized_end=211
-  _globals['_LOCATION']._serialized_start=213
-  _globals['_LOCATION']._serialized_end=249
-  _globals['_DATERANGE']._serialized_start=251
-  _globals['_DATERANGE']._serialized_end=300
-  _globals['_PRECIPITATIONEVENT']._serialized_start=302
-  _globals['_PRECIPITATIONEVENT']._serialized_end=362
-  _globals['_WEATHERHISTORY']._serialized_start=364
-  _globals['_WEATHERHISTORY']._serialized_end=469
+  _globals['_PRECIP']._serialized_start=17
+  _globals['_PRECIP']._serialized_end=77
+  _globals['_ANALYSISSUMMARY']._serialized_start=79
+  _globals['_ANALYSISSUMMARY']._serialized_end=174
+  _globals['_SUMMARY']._serialized_start=176
+  _globals['_SUMMARY']._serialized_end=245
+  _globals['_SUMMARYRETURN']._serialized_start=247
+  _globals['_SUMMARYRETURN']._serialized_end=315
+  _globals['_ANALYSISRETURN']._serialized_start=317
+  _globals['_ANALYSISRETURN']._serialized_end=370
+  _globals['_GETPRECIPRETURN']._serialized_start=372
+  _globals['_GETPRECIPRETURN']._serialized_end=496
+  _globals['_LOCATION']._serialized_start=498
+  _globals['_LOCATION']._serialized_end=534
+  _globals['_DATERANGE']._serialized_start=536
+  _globals['_DATERANGE']._serialized_end=585
+  _globals['_PRECIPITATIONEVENT']._serialized_start=587
+  _globals['_PRECIPITATIONEVENT']._serialized_end=647
+  _globals['_WEATHERHISTORY']._serialized_start=650
+  _globals['_WEATHERHISTORY']._serialized_end=805
 # @@protoc_insertion_point(module_scope)

@@ -4,7 +4,20 @@ syntax = "proto2";
 
 service WeatherHistory {
   rpc GetSummary (Summary) returns (SummaryReturn) {}
-  rpc PrecipAnalysis (Summary) returns (AnalysisReturn) {}
+  rpc PrecipAnalysis (AnalysisSummary) returns (AnalysisReturn) {}
+  rpc GetPrecip (Precip) returns (GetPrecipReturn) {}
+}
+
+message Precip {
+    required string loc_name = 1;
+    required float precip = 2;
+    required string operator = 3;
+}
+
+message AnalysisSummary {
+  required Location location = 1;
+  required DateRange daterange = 2;
+  required string loc_name = 3;
 }
 
 message Summary {
@@ -20,6 +33,13 @@ message SummaryReturn {
 
 message AnalysisReturn {
     repeated PrecipitationEvent events = 1;
+}
+
+message GetPrecipReturn {
+    repeated PrecipitationEvent return_list = 1;
+    required int32 match_days = 2;
+    required float max_precip = 3;
+    required string max_precip_date = 4;
 }
 
 message Location {
